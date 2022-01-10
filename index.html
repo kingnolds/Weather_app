@@ -15,8 +15,8 @@
     <div class="row">
     <div class="container col-3">
         <h2>Search for a City:</h2>
-        <input class="form-control" type="text" placeholder="Seattle" aria-label="default input example">
-        <button type="button" class="btn btn-primary col-12">Search</button>
+        <input class="form-control" id="city-input" type="text" placeholder="Seattle" aria-label="default input example">
+        <button type="button" class="btn btn-primary col-12" id="search-btn">Search</button>
         <div class="btn-group-vertical col-12">
             <button type="button" class="btn btn-primary col-12 my-1">Left</button>
             <button type="button" class="btn btn-primary col-12 my-1 rounded">Left</button>
@@ -28,50 +28,60 @@
             <div class="card" >
                 <div class="card-body">
                   <h5 class="card-title">City Name</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                  <p class="card-text">Some quick example text to</p>
+                  <p class="card-text">Temp: </p>
+                  <p class="card-text">Wind: </p>
+                  <p class="card-text">Humidity: </p>
+                  <p class="card-text">UV Index: </p>
                 </div>
             </div>
             <h2>5-day Forecast:</h2>
             <div class="container row justify-content-between">
                 <div class="card col-2" >
                     <div class="card-body">
-                    <h5 class="card-title">01/15/2022</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to</p>
+                        <h5 class="card-title">01/15/2022</h5>
+                        <p class="card-text">Temp: </p>
+                        <p class="card-text">Wind: </p>
+                        <p class="card-text">Humidity: </p>
+
                     </div>
                 </div>
                 <div class="card col-2" >
                     <div class="card-body">
-                    <h5 class="card-title">City Name</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to</p>
+                        <h5 class="card-title">City Name</h5>
+                        <p class="card-text">Temp: </p>
+                        <p class="card-text">Wind: </p>
+                        <p class="card-text">Humidity: </p>
                     </div>
                 </div>
                 <div class="card col-2" >
                     <div class="card-body">
-                    <h5 class="card-title">City Name</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to</p>
+                        <h5 class="card-title">City Name</h5>
+                        <p class="card-text">Temp: </p>
+                        <p class="card-text">Wind: </p>
+                        <p class="card-text">Humidity: </p>
                     </div>
                 </div>
                 <div class="card col-2" >
                     <div class="card-body">
-                    <h5 class="card-title">City Name</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to</p>
+                        <h5 class="card-title">City Name</h5>
+                        <p class="card-text">Temp: </p>
+                        <p class="card-text">Wind: </p>
+                        <p class="card-text">Humidity: </p>
                     </div>
                 </div>
                 <div class="card col-2" >
                     <div class="card-body">
-                    <h5 class="card-title">City Name</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to</p>
+                        <h5 class="card-title">City Name</h5>
+                        <p class="card-text">Temp: </p>
+                        <p class="card-text">Wind: </p>
+                        <p class="card-text">Humidity: </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./assets/script.js"></script>
 </body>
 </html>

@@ -15,13 +15,14 @@
     <div class="row">
     <div class="container col-2">
         <h2>Search for a City:</h2>
-        <input class="form-control" id="city-input" type="text" placeholder="Seattle" aria-label="default input example">
-        <button type="button" class="btn btn-primary col-12" id="search-btn">Search</button>
-        <div class="btn-group-vertical col-12">
-            <button type="button" class="btn btn-primary col-12 my-1">Left</button>
+        <input class="form-control m-1" id="city-input" type="text" placeholder="Seattle" aria-label="default input example">
+        <button type="button" class="btn btn-primary col-12 m-1" id="search-btn">Search</button>
+        <hr>
+        <div class="btn-group-vertical col-12 m-1" id="city-list">
+            <!-- <button type="button" class="btn btn-primary col-12 my-1">Left</button>
             <button type="button" class="btn btn-primary col-12 my-1 rounded">Left</button>
             <button type="button" class="btn btn-primary col-12 my-1">Left</button>
-            <button type="button" class="btn btn-primary col-12 my-1">Left</button>
+            <button type="button" class="btn btn-primary col-12 my-1">Left</button> -->
         </div>
     </div>
         <div class="container col-10">
@@ -37,7 +38,7 @@
             <h2>5-day Forecast:</h2>
             <div class="container row justify-content-between">
                 <div class="card col-2" >
-                    <div class="card-body">
+                    <div class="card-body p-1">
                         <h5 class="card-title forecast" data-date="1"></h5>
                         <img src=" " alt="" class="future-icon">
                         <p class="card-text">Temp: <span class="future-temp"></span> °F</p>
@@ -47,7 +48,7 @@
                     </div>
                 </div>
                 <div class="card col-2" >
-                    <div class="card-body">
+                    <div class="card-body p-1">
                         <h5 class="card-title forecast" data-date="2">City Name</h5>
                         <img src=" " alt="" class="future-icon">
                         <p class="card-text">Temp: <span class="future-temp"></span> °F</p>
@@ -56,7 +57,7 @@
                     </div>
                 </div>
                 <div class="card col-2" >
-                    <div class="card-body">
+                    <div class="card-body p-1">
                         <h5 class="card-title forecast" data-date="3">City Name</h5>
                         <img src=" " alt="" class="future-icon">
                         <p class="card-text">Temp: <span class="future-temp"></span> °F</p>
@@ -65,7 +66,7 @@
                     </div>
                 </div>
                 <div class="card col-2" >
-                    <div class="card-body">
+                    <div class="card-body p-1">
                         <h5 class="card-title forecast" data-date="4">City Name</h5>
                         <img src=" " alt="" class="future-icon">
                         <p class="card-text">Temp: <span class="future-temp"></span> °F</p>
@@ -74,7 +75,7 @@
                     </div>
                 </div>
                 <div class="card col-2" >
-                    <div class="card-body">
+                    <div class="card-body p-1">
                         <h5 class="card-title forecast" data-date="5">City Name</h5>
                         <img src=" " alt="" class="future-icon">
                         <p class="card-text">Temp: <span class="future-temp"></span> °F</p>
@@ -85,7 +86,7 @@
             </div>
         </div>
     </div>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./assets/script.js"></script>
 </body>

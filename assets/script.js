@@ -32,6 +32,7 @@ const currWindEl = document.querySelector('#current-wind');
 const currHumEl = document.querySelector('#current-hum');
 const currUvEl = document.querySelector('#current-uv');
 console.log(forecastTemps)
+
 function fetchWeatherInfo() {
     var weatherUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${cityLat}&lon=${cityLon}&exclude=hourly,minutely&units=imperial&appid=d3c9308138fcb4ca55018280479e6be8`;
     fetch(weatherUrl).then(function (response) {
@@ -59,13 +60,67 @@ function fillWeatherInfo() {
     cityNameEl.textContent = `${cityName} (${currentDate})`
     for (let i = 0; i < forecastCards.length; i++) {
         forecastCards[i].innerHTML = moment().add(forecastCards[i].dataset.date, 'd').format('l')
+    }
+    for (let j = 0; j < searched.length; j++) {
+        if (searched[j] === cityName) {
+            searched.splice(j, 1);
+        }
         
     }
-
 }
 
-searchBtn.addEventListener('click', function(event) {
-    event.preventDefault();
+// add the last searched city to the list of buttons and add to the local storage
+var searched = []
+var cityList = document.querySelector('#city-list') 
+
+function addButton() {
+    var searchedCity = cityName;
+    searched.unshift(searchedCity);
+    var newestCity = document.createElement('button');
+    newestCity.innerHTML = searchedCity;
+    newestCity.classList.add('btn', 'btn-primary', 'col-12', 'my-1')
+}
+
+// function sortCities(a, b) {
+//     a.getAttribute('data-order') - b.getAttribute('data-order')
+// }
+let historyBtns = []
+
+function historyClick (e) {
+    let history = e.target
+    cityInput.value = history.textContent
+    search()
+}
+
+function renderCities() { // create city list
+    // searched.sort(sortCities);
+    cityList.innerHTML = '';
+    for (let i = 0; i < searched.length; i++) { 
+        let savedCity = searched[i]
+        let cityBtn = document.createElement("button");
+        cityBtn.addEventListener('click', historyClick)
+        cityBtn.classList.add('btn', 'btn-secondary', 'col-12', 'my-1', 'rounded', 'history-btn');
+        cityBtn.textContent = `${savedCity}`;
+        cityList.prepend(cityBtn);
+    }
+    // historyBtns = document.getElementsByClassName("history-btn")
+    // console.log(historyBtns)
+}
+
+function init() {
+    let storedCities = JSON.parse(localStorage.getItem("cities")); // pull any stored cities from local storage
+
+    if (storedCities !== null) {
+        searched = storedCities;
+    }
+    renderCities();
+}
+
+function storeCities() { // store scores in local storage
+    localStorage.setItem("cities", JSON.stringify(searched));
+}
+
+function search() {
     cityUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityInput.value + '&appid=d3c9308138fcb4ca55018280479e6be8'
     console.log(cityUrl);
     fetch(cityUrl)
@@ -85,6 +140,20 @@ searchBtn.addEventListener('click', function(event) {
     cityName = data.name
     fetchWeatherInfo();
     fillWeatherInfo();
-  });
-})
+    
+    searched.push(cityName); // add the submitted city to the cities list
+    storeCities();
+    renderCities();
+    })
+};
 
+let cityListEl = $('#city-list')
+console.log(cityListEl.children())
+searchBtn.addEventListener('click', search)
+cityInput.onkeydown = function(e){
+    if(e.keyCode === 13){
+    search()
+    } 
+}
+
+init();

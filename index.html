@@ -9,35 +9,35 @@
     <link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
-    <header>
+    <header class="text-center">
         <h1>Weather Dashboard</h1>
     </header>
     <div class="row">
-    <div class="container col-2">
-        <h2>Search for a City:</h2>
-        <input class="form-control m-1" id="city-input" type="text" placeholder="Seattle" aria-label="default input example">
-        <button type="button" class="btn btn-primary col-12 m-1" id="search-btn">Search</button>
-        <hr>
-        <div class="btn-group-vertical col-12 m-1" id="city-list">
-            <!-- <button type="button" class="btn btn-primary col-12 my-1">Left</button>
-            <button type="button" class="btn btn-primary col-12 my-1 rounded">Left</button>
-            <button type="button" class="btn btn-primary col-12 my-1">Left</button>
-            <button type="button" class="btn btn-primary col-12 my-1">Left</button> -->
+        <div class="container col-2">
+            <h2>Search for a City:</h2>
+            <input class="form-control m-1" id="city-input" type="text" placeholder="Search" aria-label="default input example">
+            <button type="button" class="btn btn-primary col-12 m-1" id="search-btn">Search</button>
+            <hr>
+            <div class="btn-group-vertical col-12 m-1" id="city-list">
+                <!-- <button type="button" class="btn btn-primary col-12 my-1">Left</button>
+                <button type="button" class="btn btn-primary col-12 my-1 rounded">Left</button>
+                <button type="button" class="btn btn-primary col-12 my-1">Left</button>
+                <button type="button" class="btn btn-primary col-12 my-1">Left</button> -->
+            </div>
         </div>
-    </div>
         <div class="container col-10">
-            <div class="card" >
+            <div class="card m-1" >
                 <div class="card-body">
-                  <span class="card-title h2" id="city-name">City Name</span> <img src=" " alt="" id="current-icon">
+                  <span class="card-title h2" id="city-name"></span> <img src=" " alt="" id="current-icon">
                   <p class="card-text">Temp: <span id="current-temp"></span> °F</p>
                   <p class="card-text">Wind: <span id="current-wind"></span> MPH</p>
                   <p class="card-text">Humidity: <span id="current-hum"></span> %</p>
-                  <p class="card-text">UV Index: <span id="current-uv"></span></p>
+                  <p class="card-text">UV Index: <span id="current-uv" class="px-2 uvi"></span></p>
                 </div>
             </div>
-            <h2>5-day Forecast:</h2>
-            <div class="container row justify-content-between">
-                <div class="card col-2" >
+            <h3>5-day Forecast:</h3>
+            <div class="container row flex-sm-wrap justify-content-between">
+                <div class="card col mx-1 forecast-card" >
                     <div class="card-body p-1">
                         <h5 class="card-title forecast" data-date="1"></h5>
                         <img src=" " alt="" class="future-icon">
@@ -47,36 +47,36 @@
 
                     </div>
                 </div>
-                <div class="card col-2" >
+                <div class="card col mx-1 forecast-card" >
                     <div class="card-body p-1">
-                        <h5 class="card-title forecast" data-date="2">City Name</h5>
+                        <h5 class="card-title forecast" data-date="2"></h5>
                         <img src=" " alt="" class="future-icon">
                         <p class="card-text">Temp: <span class="future-temp"></span> °F</p>
                         <p class="card-text">Wind: <span class="future-wind"></span> MPH</p>
                         <p class="card-text">Humidity: <span class="future-hum"></span> %</p>
                     </div>
                 </div>
-                <div class="card col-2" >
+                <div class="card col mx-1 forecast-card" >
                     <div class="card-body p-1">
-                        <h5 class="card-title forecast" data-date="3">City Name</h5>
+                        <h5 class="card-title forecast" data-date="3"></h5>
                         <img src=" " alt="" class="future-icon">
                         <p class="card-text">Temp: <span class="future-temp"></span> °F</p>
                         <p class="card-text">Wind: <span class="future-wind"></span> MPH</p>
                         <p class="card-text">Humidity: <span class="future-hum"></span> %</p>
                     </div>
                 </div>
-                <div class="card col-2" >
+                <div class="card col mx-1 forecast-card" >
                     <div class="card-body p-1">
-                        <h5 class="card-title forecast" data-date="4">City Name</h5>
+                        <h5 class="card-title forecast" data-date="4"></h5>
                         <img src=" " alt="" class="future-icon">
                         <p class="card-text">Temp: <span class="future-temp"></span> °F</p>
                         <p class="card-text">Wind: <span class="future-wind"></span> MPH</p>
                         <p class="card-text">Humidity: <span class="future-hum"></span> %</p>
                     </div>
                 </div>
-                <div class="card col-2" >
+                <div class="card col mx-1 forecast-card" >
                     <div class="card-body p-1">
-                        <h5 class="card-title forecast" data-date="5">City Name</h5>
+                        <h5 class="card-title forecast" data-date="5"></h5>
                         <img src=" " alt="" class="future-icon">
                         <p class="card-text">Temp: <span class="future-temp"></span> °F</p>
                         <p class="card-text">Wind: <span class="future-wind"></span> MPH</p>
@@ -86,7 +86,24 @@
             </div>
         </div>
     </div>
+    <div class="modal" id="modal-alert" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">City Not Found</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>Please try another city.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+            </div>
+          </div>
+        </div>
+      </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./assets/script.js"></script>
 </body>

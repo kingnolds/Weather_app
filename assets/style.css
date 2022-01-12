@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+    font-family: fantasy;
+}
+
+header {
+    background-image: linear-gradient(to right, skyblue, midnightblue);
+   color: white;
+}
+
+.forecast-card {
+    background-color: midnightblue;
+    color: white;
+}
+
+.uvi {
+    color: white;
+}
+.low {
+    background-color: green;
+}
+.moderate {
+    background-color: yellow;
+}
+.high {
+    background-color: orange;
+}
+.very-high {
+    background-color: red;
+}
+.extreme {
+    background-color: purple;
+}

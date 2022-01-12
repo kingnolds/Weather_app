@@ -44,6 +44,17 @@ function fetchWeatherInfo() {
     currWindEl.innerHTML = data.current.wind_speed
     currHumEl.innerHTML = data.current.humidity
     currUvEl.innerHTML = data.current.uvi
+    if (data.current.uvi <= 2) {
+        currUvEl.classList.add('low')
+    } else if (data.current.uvi < 6) {
+        currUvEl.classList.add('moderate')
+    } else if (data.current.uvi < 8) { 
+        currUvEl.classList.add('high')
+    } else if (data.current.uvi < 11) {
+        currUvEl.classList.add('very-high')
+    } else {
+        currUvEl.classList.add('extreme')
+    }
     console.log(data.current.weather[0].icon)
     currentIcon.src = `http://openweathermap.org/img/wn/${data.current.weather[0].icon}.png`
     for (let i = 0; i < forecastCards.length; i++) {
@@ -112,6 +123,11 @@ function init() {
 
     if (storedCities !== null) {
         searched = storedCities;
+        cityInput.value = searched[searched.length-1] //most recent in history is pulled up
+        search()
+    } else { 
+        cityInput.value = "Seattle" // if there is no history search for seattle weather
+        search()
     }
     renderCities();
 }
@@ -126,8 +142,8 @@ function search() {
     fetch(cityUrl)
     .then(function (response) {
     if (!response.ok) {
-        window.alert('no') // change this to modal
-        return;
+        var myModal = new bootstrap.Modal(document.getElementById('modal-alert'))
+        myModal.show()
     }
     return response.json();
     })
@@ -140,10 +156,11 @@ function search() {
     cityName = data.name
     fetchWeatherInfo();
     fillWeatherInfo();
-    
+    currUvEl.classList.remove('low', 'moderate', 'high', 'very-high', 'extreme')
     searched.push(cityName); // add the submitted city to the cities list
     storeCities();
     renderCities();
+    cityInput.value = ""
     })
 };
 

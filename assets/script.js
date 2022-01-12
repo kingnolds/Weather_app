@@ -13,7 +13,7 @@ const currTempEl = document.querySelector('#current-temp');
 const currWindEl = document.querySelector('#current-wind');
 const currHumEl = document.querySelector('#current-hum');
 const currUvEl = document.querySelector('#current-uv');
-console.log(forecastTemps)
+
 var cityUrl// = $('api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}')
 var cityLat
 var cityLon
@@ -118,7 +118,6 @@ function storeCities() { // store scores in local storage
 
 function search() {
     cityUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityInput.value + '&appid=d3c9308138fcb4ca55018280479e6be8'
-    console.log(cityUrl);
     fetch(cityUrl)
     .then(function (response) {
     if (!response.ok) {
@@ -128,9 +127,6 @@ function search() {
     return response.json();
     })
     .then(function (data) {
-    console.log(data);
-    console.log(data.coord.lat)
-    console.log(data.coord.lon)
     cityLon = data.coord.lon
     cityLat = data.coord.lat
     cityName = data.name

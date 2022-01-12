@@ -1,45 +1,31 @@
-// TODO: when a city is entered in the search bar
-//          create a fetch request for that city
-//          use current weather api for city lat lon
-//          if the city is not a valid input show a modal saying that it is not valid
-//          take the lat lon and put it into the one call api
-//          put the current date in the main header with the city name, weather icon, temp, wind, humidity, and uv index
-//          put the data for future days in the cards with weather icon, temp wind, and humidity
-//          manipulate the dom to put all info in the correct places
-//          add a button with the searched city to the bar below
-//          place all searched cities into local storage 
-//          on page load: show most recently searched city, if none a default
-//                      populate buttons with recently searched cities
-console.log('hello')
-
+// Document element Variables
 const cityInput = document.querySelector('#city-input');
 const searchBtn = document.querySelector('#search-btn');
-var cityUrl// = $('api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}')
-var cityLat
-var cityLon
-var cityName
 var forecastCards = document.getElementsByClassName("forecast");
 var forecastTemps = document.getElementsByClassName("future-temp"); 
 var forecastWinds = document.getElementsByClassName("future-wind"); 
 var forecastHums = document.getElementsByClassName("future-hum");
 var forecastIcons =  document.getElementsByClassName("future-icon");
 const cityNameEl = document.querySelector('#city-name');
-const currentIcon = document.querySelector('#current-icon');
-// const 
+const currentIcon = document.querySelector('#current-icon'); 
 var currentDate = moment().format('MM/DD/YYYY');
 const currTempEl = document.querySelector('#current-temp');
 const currWindEl = document.querySelector('#current-wind');
 const currHumEl = document.querySelector('#current-hum');
 const currUvEl = document.querySelector('#current-uv');
 console.log(forecastTemps)
+var cityUrl// = $('api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}')
+var cityLat
+var cityLon
+var cityName
 
+// Pull weather information from weather api based on lat and lon data  from the city lookup
 function fetchWeatherInfo() {
     var weatherUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${cityLat}&lon=${cityLon}&exclude=hourly,minutely&units=imperial&appid=d3c9308138fcb4ca55018280479e6be8`;
     fetch(weatherUrl).then(function (response) {
     return response.json();    
     })
     .then(function (data) {
-    console.log(data);
     currTempEl.innerHTML = data.current.temp
     currWindEl.innerHTML = data.current.wind_speed
     currHumEl.innerHTML = data.current.humidity
@@ -55,7 +41,6 @@ function fetchWeatherInfo() {
     } else {
         currUvEl.classList.add('extreme')
     }
-    console.log(data.current.weather[0].icon)
     currentIcon.src = `http://openweathermap.org/img/wn/${data.current.weather[0].icon}.png`
     for (let i = 0; i < forecastCards.length; i++) {
         forecastTemps[i].innerHTML = data.daily[i+1].temp.day
@@ -66,8 +51,8 @@ function fetchWeatherInfo() {
 
     })};
 
+    // fills out information from fetched data and prompts a modal if the city is not found
 function fillWeatherInfo() {
-    
     cityNameEl.textContent = `${cityName} (${currentDate})`
     for (let i = 0; i < forecastCards.length; i++) {
         forecastCards[i].innerHTML = moment().add(forecastCards[i].dataset.date, 'd').format('l')
@@ -92,9 +77,7 @@ function addButton() {
     newestCity.classList.add('btn', 'btn-primary', 'col-12', 'my-1')
 }
 
-// function sortCities(a, b) {
-//     a.getAttribute('data-order') - b.getAttribute('data-order')
-// }
+
 let historyBtns = []
 
 function historyClick (e) {
@@ -104,7 +87,6 @@ function historyClick (e) {
 }
 
 function renderCities() { // create city list
-    // searched.sort(sortCities);
     cityList.innerHTML = '';
     for (let i = 0; i < searched.length; i++) { 
         let savedCity = searched[i]
@@ -114,8 +96,6 @@ function renderCities() { // create city list
         cityBtn.textContent = `${savedCity}`;
         cityList.prepend(cityBtn);
     }
-    // historyBtns = document.getElementsByClassName("history-btn")
-    // console.log(historyBtns)
 }
 
 function init() {
@@ -164,8 +144,9 @@ function search() {
     })
 };
 
+// event listener for search button and pressing enter in text input
 let cityListEl = $('#city-list')
-console.log(cityListEl.children())
+
 searchBtn.addEventListener('click', search)
 cityInput.onkeydown = function(e){
     if(e.keyCode === 13){

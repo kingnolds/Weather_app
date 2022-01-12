@@ -4,7 +4,7 @@ This is an app to search the one call OpenWeather api to show the current weathe
 
 This uses the javascript fetch request to obtain the information from the api and JavaScript to fill out the information. Formatting and styling was done with Bootstrap. Moment was used to retrieve the current time and future dates.
 ## Screenshots
-![Weather Forecast Screen](/images/weatherScrn.png?raw=true)
+![Weather Forecast Screen](/assets/images/weatherScrn.png?raw=true)
 
 ## Deployed page
  https://kingnolds.github.io/Weather_app/
